@@ -1,0 +1,14 @@
+{
+  "kubeconfig": "D:/go_workspace/ssl/admin.conf",
+  "sink": "mysql",
+  "host": "localhost",
+  "port": "3306",
+  "username":"root",
+  "password":"wangfeng_1983",
+  "dbName":"foot",
+  "cluster":"cluster001",
+  "interval":5,
+  "devs":["D:/"],
+  "log_dir":"D:/",
+  "log_file":"event"
+}
