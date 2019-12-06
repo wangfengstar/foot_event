@@ -53,7 +53,7 @@ func toDeployEvent(event watch.Event) *options.DeployEvent {
 	namespace, err := res.Get("metadata").Get("namespace").String()
 
 	//fmt.Println(namespace)
-	//fmt.Println(toString(event.Object))
+	fmt.Println(toString(event.Object))
 
 	if objType == "*v1.Deployment" {
 			bean.ObjType = "deployment"

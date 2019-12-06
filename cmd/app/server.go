@@ -13,7 +13,6 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
-
 	"os"
 	"strings"
 	"sync"
@@ -61,12 +60,11 @@ func run(ctx options.Context) {
 
 	events := NewEventInitializers()
 
-	for key, event := range events {
-		go func() {
-			glog.Info("Starting  event : %v.", key)
-			//fmt.Printf()
-			event(ctx)
-		}()
+	for  event := range events {
+		go func(event string) {
+			fmt.Printf("event : %v \n", event)
+			events[event](ctx)
+		}(event)
 	}
 
 	s := <-ctx.Stop

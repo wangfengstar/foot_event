@@ -12,6 +12,7 @@ func StartDeploymentEvent(ctx options.Context) {
 
 	//watcher,err := ctx.Client.ExtensionsV1beta1().Deployments("").Watch(metav1.ListOptions{})
 	watcher, err := ctx.Client.AppsV1().Deployments("").Watch(metav1.ListOptions{})
+	//watcher, err := ctx.Client.CoreV1().Events("").Watch(metav1.ListOptions{})
 	if err != nil {
 		panic(err.Error())
 	}
