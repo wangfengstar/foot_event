@@ -2,7 +2,7 @@ package events
 
 import (
 	"fmt"
-	"foot/event/pkg/options"
+	"foot_event/pkg/options"
 	"io/ioutil"
 	"net/http"
 	"strings"

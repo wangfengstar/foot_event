@@ -3,7 +3,7 @@ package events
 import (
 	"encoding/json"
 	"fmt"
-	"foot/event/pkg/options"
+	"foot_event/pkg/options"
 	"github.com/bitly/go-simplejson"
 	"github.com/google/uuid"
 	"k8s.io/api/core/v1"

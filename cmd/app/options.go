@@ -1,7 +1,7 @@
 package app
 
 import (
-	"foot/event/pkg/options"
+	"foot_event/pkg/options"
 	"github.com/spf13/viper"
 	"os"
 	"time"

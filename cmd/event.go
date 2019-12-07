@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"foot/event/cmd/app"
-	"foot/event/pkg/flags"
-	"foot/event/pkg/signal"
+	"foot_event/cmd/app"
+	"foot_event/pkg/flags"
+	"foot_event/pkg/signal"
 	"github.com/spf13/viper"
 	"os"
 	"time"
@@ -20,7 +20,7 @@ func init() {
 
 	viper.SetConfigType("json")
 	viper.SetConfigName("config")
-	viper.AddConfigPath("D:/go_workspace/src/foot/event/etc") //改为环境变量
+	viper.AddConfigPath("D:/go_workspace/src/foot_event/etc") //改为环境变量
 	//viper.AddConfigPath("/root/go/src/foot/event/etc") //改为环境变量
 	viper.AddConfigPath(".")
 	viper.SetDefault("kubeconfig", "")

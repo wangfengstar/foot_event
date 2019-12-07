@@ -4,8 +4,8 @@ package events
 
 import (
 	"fmt"
-	"foot/event/pkg/options"
-	"foot/event/pkg/sinks"
+	"foot_event/pkg/options"
+	"foot_event/pkg/sinks"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"time"
 )

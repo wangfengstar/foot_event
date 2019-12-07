@@ -1,7 +1,7 @@
 package app
 
 import (
-	evtk8 "foot/event/pkg/events/k8event"
+	evtk8 "foot_event/pkg/events/k8event"
 )
 
 //var wg sync.WaitGroup

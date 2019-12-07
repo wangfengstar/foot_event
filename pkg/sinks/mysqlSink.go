@@ -2,7 +2,7 @@ package sinks
 
 import (
 	"fmt"
-	"foot/event/pkg/options"
+	"foot_event/pkg/options"
 	"github.com/go-xorm/xorm"
 	"github.com/golang/glog"
 	"k8s.io/apimachinery/pkg/watch"

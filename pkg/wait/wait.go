@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"foot/event/pkg/runtime"
+	"foot_event/pkg/runtime"
 )
 
 // For any test of the style:

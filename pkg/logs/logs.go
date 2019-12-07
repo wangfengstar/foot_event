@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/spf13/pflag"
-	"foot/event/pkg/klog"
-	"foot/event/pkg/wait"
+	"foot_event/pkg/klog"
+	"foot_event/pkg/wait"
 )
 
 const logFlushFreqFlagName = "log-flush-frequency"

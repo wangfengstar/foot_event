@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"foot/event/pkg/klog"
+	"foot_event/pkg/klog"
 )
 
 var (
