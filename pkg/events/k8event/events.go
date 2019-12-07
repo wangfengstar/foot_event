@@ -1,7 +1,5 @@
 package events
 
-//wangfeng
-
 import (
 	"fmt"
 	"foot_event/pkg/options"
@@ -10,10 +8,11 @@ import (
 	"time"
 )
 
-func StartSchedulerEvent(ctx options.Context) {
+//wangfeng
+func StartEvents(ctx options.Context) {
 	sink := sinks.ManufactureSink()
 	//watcher, err := ctx.Client.CoreV1().Events("").Watch(metav1.ListOptions{})
-	watcher, err := ctx.Client.AutoscalingV1().HorizontalPodAutoscalers("").Watch(metav1.ListOptions{})
+	watcher, err := ctx.Client.CoreV1().Events("").Watch(metav1.ListOptions{})
 	if err != nil {
 		panic(err.Error())
 	}
@@ -22,7 +21,7 @@ func StartSchedulerEvent(ctx options.Context) {
 		select {
 		case event, chanOk := <-watcher.ResultChan():
 			if chanOk {
-				nodeEvent := toSchedulerEvent(event)
+				nodeEvent := toEvents(event)
 				nodeEvent.ClusterId = ctx.ClusterId
 				sink.Update(nodeEvent)
 			}
@@ -33,3 +32,4 @@ func StartSchedulerEvent(ctx options.Context) {
 	}
 	<-ctx.Stop
 }
+

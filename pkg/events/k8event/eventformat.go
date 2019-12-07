@@ -12,6 +12,62 @@ import (
 	"time"
 )
 
+func toSchedulerEvent(event watch.Event) *options.SchedulerEvent {
+	bean := &options.SchedulerEvent{
+		ID:          uuid.New().String(),
+		EventType:   string(event.Type),
+		Metadata:    toString(event.Object),
+		CreatedTime: time.Now(),
+		UpdatedTime: time.Now(),
+	}
+	objType := reflect.TypeOf(event.DeepCopy().Object).String()
+
+	fmt.Println(objType)
+
+	res, err := simplejson.NewJson([]byte(bean.Metadata))
+	if err != nil {
+		fmt.Printf("%v\n", err)
+	}
+	name, err := res.Get("metadata").Get("name").String()
+	namespace, err := res.Get("metadata").Get("namespace").String()
+
+	if objType == "*v1.HorizontalPodAutoscaler" {
+		bean.ObjType = "HorizontalPodAutoscaler"
+		bean.ObjName = name
+		bean.NameSpace = namespace
+	}
+
+	return bean
+}
+
+func toEvents(event watch.Event) *options.Events {
+	bean := &options.Events{
+		ID:          uuid.New().String(),
+		EventType:   string(event.Type),
+		Metadata:    toString(event.Object),
+		CreatedTime: time.Now(),
+		UpdatedTime: time.Now(),
+	}
+	objType := reflect.TypeOf(event.DeepCopy().Object).String()
+
+	fmt.Println(objType)
+
+	res, err := simplejson.NewJson([]byte(bean.Metadata))
+	if err != nil {
+		fmt.Printf("%v\n", err)
+	}
+	name, err := res.Get("metadata").Get("name").String()
+	namespace, err := res.Get("metadata").Get("namespace").String()
+
+	if objType == "*v1.Event" {
+		bean.ObjType = "Events"
+		bean.ObjName = name
+		bean.NameSpace = namespace
+	}
+
+	return bean
+}
+
 func toNodeEvent(event watch.Event) *options.NodeEvent {
 	bean := &options.NodeEvent{
 		ID:          uuid.New().String(),

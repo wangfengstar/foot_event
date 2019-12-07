@@ -63,6 +63,30 @@ type NodeEvent struct {
 	UpdatedTime time.Time `xorm:"'UPDATED_TIME'"`
 }
 
+type SchedulerEvent struct {
+	ID          string    `xorm:"'ID'"`
+	ClusterId   string    `xorm:"'CLUSTER_ID'"` /** 资源池;集群ID */
+	EventType   string    `xorm:"'EVT_TYPE'"`   /** 事件类型 */
+	NameSpace   string    `xorm:"'NAMESPACE'"`  /** 域名 */
+	ObjName     string    `xorm:"'OBJ_NAME'"`   /** 事件对象名称 */
+	ObjType     string    `xorm:"'OBJ_TYPE'"`   /** 事件对象 */
+	Metadata    string    `xorm:"'META_DATA'"`  /** 元数据 */
+	CreatedTime time.Time `xorm:"'CREATED_TIME'"`
+	UpdatedTime time.Time `xorm:"'UPDATED_TIME'"`
+}
+
+type Events struct {
+	ID          string    `xorm:"'ID'"`
+	ClusterId   string    `xorm:"'CLUSTER_ID'"` /** 资源池;集群ID */
+	EventType   string    `xorm:"'EVT_TYPE'"`   /** 事件类型 */
+	NameSpace   string    `xorm:"'NAMESPACE'"`  /** 域名 */
+	ObjName     string    `xorm:"'OBJ_NAME'"`   /** 事件对象名称 */
+	ObjType     string    `xorm:"'OBJ_TYPE'"`   /** 事件对象 */
+	Metadata    string    `xorm:"'META_DATA'"`  /** 元数据 */
+	CreatedTime time.Time `xorm:"'CREATED_TIME'"`
+	UpdatedTime time.Time `xorm:"'UPDATED_TIME'"`
+}
+
 //wangfeng pod
 type PodEvent struct {
 	ID          string    `xorm:"'ID'"`
@@ -110,6 +134,15 @@ func (Node) TableName() string {
 func (Image) TableName() string {
 	return "CM_HOST_IMAGE"
 }
+
+func (SchedulerEvent) TableName() string {
+	return "T_HPA_EVENT"
+}
+
+func (Events) TableName() string {
+	return "T_EVENT"
+}
+
 func (NodeEvent) TableName() string {
 	return "CM_EVENT"
 }
