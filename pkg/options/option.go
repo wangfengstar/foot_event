@@ -154,5 +154,5 @@ func (PodEvent) TableName() string {
 
 ////wangfeng Deploy
 func (DeployEvent) TableName() string {
-	return "APP_EVENT"
+	return "T_APP_EVENT"
 }
