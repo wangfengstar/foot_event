@@ -107,6 +107,7 @@ func toDeployEvent(event watch.Event) *options.DeployEvent {
 	}
 	name, err := res.Get("metadata").Get("name").String()
 	namespace, err := res.Get("metadata").Get("namespace").String()
+	app,err := res.Get("spec").Get("selector").Get("matchLabels").Get("app").String()
 
 	//fmt.Println(namespace)
 	fmt.Println(toString(event.Object))
@@ -115,6 +116,7 @@ func toDeployEvent(event watch.Event) *options.DeployEvent {
 			bean.ObjType = "deployment"
 			bean.ObjName = name
 			bean.NameSpace = namespace
+			bean.AppCode = app
 	}
 
 	return bean
@@ -139,11 +141,13 @@ func toPodEvent(event watch.Event) *options.PodEvent {
 	}
 	name, err := res.Get("metadata").Get("name").String()
 	namespace, err := res.Get("metadata").Get("namespace").String()
+	app, err := res.Get("metadata").Get("labels").Get("app").String()
 
 	if objType == "*v1.Pod" {
 			bean.ObjType = "pod" //node.Kind
 			bean.ObjName = name
 			bean.NameSpace = namespace
+			bean.AppCode = app
 	}
 	return bean
 }

@@ -94,6 +94,7 @@ type PodEvent struct {
 	EventType   string    `xorm:"'EVT_TYPE'"`   /** 事件类型 */
 	NameSpace   string    `xorm:"'NAMESPACE'"`  /** 域名 */
 	ObjName     string    `xorm:"'OBJ_NAME'"`   /** 事件对象名称 */
+	AppCode     string    `xorm:"'APP_CODE'"`   /** 应用code */
 	ObjType     string    `xorm:"'OBJ_TYPE'"`   /** 事件对象 */
 	Metadata    string    `xorm:"'META_DATA'"`  /** 元数据 */
 	CreatedTime time.Time `xorm:"'CREATED_TIME'"`
@@ -107,6 +108,7 @@ type DeployEvent struct {
 	EventType   string    `xorm:"'EVT_TYPE'"`   /** 事件类型 */
 	NameSpace   string    `xorm:"'NAMESPACE'"`  /** 域名 */
 	ObjName     string    `xorm:"'OBJ_NAME'"`   /** 事件对象名称 */
+	AppCode     string    `xorm:"'APP_CODE'"`   /** 应用code */
 	ObjType     string    `xorm:"'OBJ_TYPE'"`   /** 事件对象 */
 	Metadata    string    `xorm:"'META_DATA'"`  /** 元数据 */
 	CreatedTime time.Time `xorm:"'CREATED_TIME'"`
@@ -149,7 +151,7 @@ func (NodeEvent) TableName() string {
 
 //wangfeng pod
 func (PodEvent) TableName() string {
-	return "POD_EVENT"
+	return "T_POD_EVENT"
 }
 
 ////wangfeng Deploy
