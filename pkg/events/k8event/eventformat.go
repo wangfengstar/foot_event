@@ -30,11 +30,13 @@ func toSchedulerEvent(event watch.Event) *options.SchedulerEvent {
 	}
 	name, err := res.Get("metadata").Get("name").String()
 	namespace, err := res.Get("metadata").Get("namespace").String()
+	app := name
 
 	if objType == "*v1.HorizontalPodAutoscaler" {
 		bean.ObjType = "HorizontalPodAutoscaler"
 		bean.ObjName = name
 		bean.NameSpace = namespace
+		bean.AppCode = app
 	}
 
 	return bean

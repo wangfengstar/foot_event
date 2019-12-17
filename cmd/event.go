@@ -20,9 +20,7 @@ func init() {
 
 	viper.SetConfigType("json")
 	viper.SetConfigName("config")
-	//viper.AddConfigPath( os.Getenv("GO_HOME")+"/src/foot_event/etc") //改为环境变量
 	viper.AddConfigPath( os.Getenv("WORK_HOME")+"/foot_event/etc") //改为环境变量
-	//viper.AddConfigPath("/root/go/src/foot/event/etc") //改为环境变量
 	viper.AddConfigPath(".")
 	viper.SetDefault("kubeconfig", "")
 	viper.SetDefault("sinks", "mysql")
