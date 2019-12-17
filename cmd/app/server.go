@@ -63,6 +63,7 @@ func run(ctx options.Context) {
 	for  event := range events {
 		go func(event string) {
 			fmt.Printf("event : %v \n", event)
+
 			events[event](ctx)
 		}(event)
 	}
