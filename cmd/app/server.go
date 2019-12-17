@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"foot_event/pkg/klog"
 	"foot_event/pkg/options"
 	"github.com/golang/glog"
 	"github.com/spf13/cobra"
@@ -13,6 +12,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
+	"k8s.io/klog"
 	"os"
 	"strings"
 	"sync"
@@ -41,7 +41,7 @@ func NewEventCommand(stopCh <-chan struct{}) *cobra.Command {
 			if err == nil {
 				run(eventContext)
 			} else {
-				klog.Fatalf("error building event context: %v", err)
+				//klog.Fatalf("error building event context: %v", err)
 			}
 		},
 	}
