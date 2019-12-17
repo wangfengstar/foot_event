@@ -68,10 +68,10 @@ func init() {
 }
 
 func main() {
-	logger := initLogger("./all.log", "debug")
+	logger := initLogger("./event.log", "info")
 	command := app.NewEventCommand(signal.SetupSignalHandler())
 
-	logger.Info(fmt.Sprint("test log "))
+	logger.Info(fmt.Sprint("event start..... "))
 	if err := command.Execute(); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 
