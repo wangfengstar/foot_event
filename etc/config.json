@@ -9,6 +9,7 @@
   "cluster":"cluster001",
   "interval":5,
   "devs":["D:/"],
-  "log_dir":"D:/",
-  "log_file":"event"
+  "log_dir":"D:/go_workspace/log/",
+  "log_file":"event.log",
+  "log_level":"Info"
 }

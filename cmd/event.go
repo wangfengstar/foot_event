@@ -21,7 +21,11 @@ func init() {
 	viper.SetDefault("sinks", "mysql")
 	viper.SetDefault("interval", time.Second*5)
 	//日志初始化
-	loggs.InitLogger("./test.log","Info")
+	if err := viper.ReadInConfig(); err != nil {
+		panic(err.Error())
+	}
+	loggs.InitLogger(viper.GetString("log_dir")+viper.GetString("log_file"),viper.GetString("log_level"))
+
 	flag.Parse()
 }
 
@@ -31,9 +35,6 @@ func main() {
 	loggs.Log.Info(fmt.Sprint("foot_event start..... "))
 	if err := command.Execute(); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
-
-		loggs.Log.Error("Error:", )
-
 		os.Exit(1)
 	}
 
