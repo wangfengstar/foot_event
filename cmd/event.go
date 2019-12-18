@@ -4,19 +4,12 @@ import (
 	"flag"
 	"fmt"
 	"foot_event/cmd/app"
-	"foot_event/pkg/flags"
-	"foot_event/pkg/log"
+	"foot_event/pkg/loggs"
 	"foot_event/pkg/signal"
 	"github.com/spf13/viper"
 	"os"
 	"time"
 )
-
-var(
-	argSources     flags.Uri
-)
-
-
 
 //初始化客户端
 func init() {
@@ -27,18 +20,20 @@ func init() {
 	viper.SetDefault("kubeconfig", "")
 	viper.SetDefault("sinks", "mysql")
 	viper.SetDefault("interval", time.Second*5)
-
-	flag.Var(&argSources, "source", "source(s) to read events from")
+	//日志初始化
+	loggs.InitLogger("./test.log","Info")
 	flag.Parse()
 }
 
 func main() {
-	logger := log.InitLogger("./event.log", "info")
 	command := app.NewEventCommand(signal.SetupSignalHandler())
 
-	logger.Info(fmt.Sprint("event start..... "))
+	loggs.Log.Info(fmt.Sprint("foot_event start..... "))
 	if err := command.Execute(); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
+
+		loggs.Log.Error("Error:", )
+
 		os.Exit(1)
 	}
 

@@ -1,10 +1,12 @@
-package log
+package loggs
 
 import (
 	"github.com/natefinch/lumberjack"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
+
+var Log *zap.Logger
 
 func InitLogger(logpath string, loglevel string) *zap.Logger {
 	hook := lumberjack.Logger{
@@ -35,8 +37,8 @@ func InitLogger(logpath string, loglevel string) *zap.Logger {
 		w,
 		level,)
 
-	logger := zap.New(core)
-	logger.Info("DefaultLogger init success")
+	Log = zap.New(core)
+	Log.Info("DefaultLogger init success")
 
-	return logger
+	return Log
 }

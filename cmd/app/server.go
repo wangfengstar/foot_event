@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"foot_event/pkg/loggs"
 	"foot_event/pkg/options"
 	"github.com/golang/glog"
 	"github.com/spf13/cobra"
@@ -39,6 +40,7 @@ func NewEventCommand(stopCh <-chan struct{}) *cobra.Command {
 		Run: func(cmd *cobra.Command, args []string) {
 			eventContext, err := createEventContext(stopCh)
 			if err == nil {
+				loggs.Log.Info("event end..... ")
 				run(eventContext)
 			} else {
 				//klog.Fatalf("error building event context: %v", err)
