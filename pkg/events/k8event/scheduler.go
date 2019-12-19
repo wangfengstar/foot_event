@@ -4,6 +4,7 @@ package events
 
 import (
 	"fmt"
+	"foot_event/pkg/loggs"
 	"foot_event/pkg/options"
 	"foot_event/pkg/sinks"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -12,9 +13,10 @@ import (
 
 func StartSchedulerEvent(ctx options.Context) {
 	sink := sinks.ManufactureSink()
-	//watcher, err := ctx.Client.CoreV1().Events("").Watch(metav1.ListOptions{})
+
 	watcher, err := ctx.Client.AutoscalingV1().HorizontalPodAutoscalers("").Watch(metav1.ListOptions{})
 	if err != nil {
+		loggs.Log.Error(fmt.Sprint("error HorizontalPodAutoscalers watcher: ", err))
 		panic(err.Error())
 	}
 
@@ -27,7 +29,7 @@ func StartSchedulerEvent(ctx options.Context) {
 				sink.Update(nodeEvent)
 			}
 		default:
-			fmt.Println("do nothing")
+			loggs.Log.Info(fmt.Sprint("StartSchedulerEvent do nothing!"))
 		}
 		time.Sleep(ctx.Interval)
 	}

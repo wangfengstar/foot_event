@@ -35,6 +35,7 @@ func main() {
 	loggs.Log.Info(fmt.Sprint("foot_event start..... "))
 	if err := command.Execute(); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
+		loggs.Log.Error(fmt.Sprint("foot_event exit: ", err))
 		os.Exit(1)
 	}
 

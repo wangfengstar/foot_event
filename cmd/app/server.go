@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"foot_event/pkg/loggs"
 	"foot_event/pkg/options"
-	"github.com/golang/glog"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"k8s.io/client-go/informers"
@@ -40,10 +39,9 @@ func NewEventCommand(stopCh <-chan struct{}) *cobra.Command {
 		Run: func(cmd *cobra.Command, args []string) {
 			eventContext, err := createEventContext(stopCh)
 			if err == nil {
-				loggs.Log.Info("event end..... ")
 				run(eventContext)
 			} else {
-				//klog.Fatalf("error building event context: %v", err)
+				loggs.Log.Error(fmt.Sprint("error building event context: ", err))
 			}
 		},
 	}
@@ -58,14 +56,15 @@ func run(ctx options.Context) {
 	//	glog.Warning(http.ListenAndServe(*addr, nil))
 	//}()
 
-	glog.Info("Starting all event metrics.")
+	//glog.Info("Starting all event metrics.")
+	loggs.Log.Info(fmt.Sprint("Starting all event metrics."))
 
 	events := NewEventInitializers()
 
 	for  event := range events {
 		go func(event string) {
-			fmt.Printf("event : %v \n", event)
-
+			//fmt.Printf("event : %v \n", event)
+			loggs.Log.Info(fmt.Sprint("event metrics classtype:",event))
 			events[event](ctx)
 		}(event)
 	}
@@ -79,6 +78,7 @@ func createEventContext(stop <-chan struct{}) (options.Context, error) {
 	var err error
 
 	if err := viper.ReadInConfig(); err != nil {
+		loggs.Log.Error(fmt.Sprint("error read config: ", err))
 		panic(err.Error())
 	}
 	viper.BindEnv("kubeconfig")

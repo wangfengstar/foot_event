@@ -2,6 +2,7 @@ package events
 
 import (
 	"fmt"
+	"foot_event/pkg/loggs"
 	"foot_event/pkg/options"
 	"foot_event/pkg/sinks"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -26,7 +27,7 @@ func StartEvents(ctx options.Context) {
 				sink.Update(nodeEvent)
 			}
 		default:
-			fmt.Println("do nothing")
+			loggs.Log.Info(fmt.Sprint("StartEvents do nothing!"))
 		}
 		time.Sleep(ctx.Interval)
 	}
