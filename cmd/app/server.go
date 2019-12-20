@@ -56,14 +56,12 @@ func run(ctx options.Context) {
 	//	glog.Warning(http.ListenAndServe(*addr, nil))
 	//}()
 
-	//glog.Info("Starting all event metrics.")
 	loggs.Log.Info(fmt.Sprint("Starting all event metrics."))
 
 	events := NewEventInitializers()
 
 	for  event := range events {
 		go func(event string) {
-			//fmt.Printf("event : %v \n", event)
 			loggs.Log.Info(fmt.Sprint("event metrics classtype:",event))
 			events[event](ctx)
 		}(event)

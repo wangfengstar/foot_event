@@ -15,7 +15,7 @@ import (
 func init() {
 	viper.SetConfigType("json")
 	viper.SetConfigName("config")
-	viper.AddConfigPath( os.Getenv("WORK_HOME")+"/foot_event/etc") //改为环境变量
+	viper.AddConfigPath( os.Getenv("WORK_HOME")+"/etc") //改为环境变量
 	viper.AddConfigPath(".")
 	viper.SetDefault("kubeconfig", "")
 	viper.SetDefault("sinks", "mysql")
@@ -24,7 +24,7 @@ func init() {
 	if err := viper.ReadInConfig(); err != nil {
 		panic(err.Error())
 	}
-	loggs.InitLogger(viper.GetString("log_dir")+viper.GetString("log_file"),viper.GetString("log_level"))
+	loggs.InitLogger(os.Getenv("WORK_HOME")+viper.GetString("log_dir")+viper.GetString("log_file"),viper.GetString("log_level"))
 
 	flag.Parse()
 }
