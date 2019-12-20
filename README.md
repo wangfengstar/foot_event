@@ -1,2 +1,2 @@
-# aifeventer
+# foot_event
 一款go语言开发的容器和虚拟机各类事件采集上报的组件
