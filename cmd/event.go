@@ -38,5 +38,4 @@ func main() {
 		loggs.Log.Error(fmt.Sprint("foot_event exit: ", err))
 		os.Exit(1)
 	}
-
 }
