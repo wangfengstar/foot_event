@@ -7,7 +7,7 @@ GO_BUILD := $(GO) build  -buildmode=pie $(EXTRA_FLAGS)
 
 .DEFAULT: foot_event/cmd
 
-foot_event:
+foot_event/cmd:
 	$(GO_BUILD) -o foot_event/cmd .
 
 all: foot_event/cmd
