@@ -11,12 +11,9 @@ PROJECT := foot_event
 
 
 # TODO: rm -mod=vendor once go 1.13 is unsupported
-ifneq ($(GO111MODULE),off)
-	MOD_VENDOR := "-mod=vendor"
-endif
-GO_BUILD := $(GO) build $(MOD_VENDOR) -buildmode=pie $(EXTRA_FLAGS) -tags "$(BUILDTAGS)" \
+GO_BUILD := $(GO) build  -buildmode=pie $(EXTRA_FLAGS) -tags "$(BUILDTAGS)" \
 	-ldflags "-X main.gitCommit=$(COMMIT) -X main.version=$(VERSION) $(EXTRA_LDFLAGS)"
-GO_BUILD_STATIC := CGO_ENABLED=1 $(GO) build $(MOD_VENDOR) $(EXTRA_FLAGS) -tags "$(BUILDTAGS) netgo osusergo" \
+GO_BUILD_STATIC := CGO_ENABLED=1 $(GO) build  $(EXTRA_FLAGS) -tags "$(BUILDTAGS)  " \
 	-ldflags "-w -extldflags -static -X main.gitCommit=$(COMMIT) -X main.version=$(VERSION) $(EXTRA_LDFLAGS)"
 
 .DEFAULT: foot_event
